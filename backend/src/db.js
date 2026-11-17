@@ -25,6 +25,11 @@ export async function connectDatabase(options = {}) {
   return mongoose.connection;
 }
 
+export function reportDatabaseError(err) {
+  console.error(err?.message || 'Database operation failed');
+  process.exitCode = 1;
+}
+
 export async function disconnectDatabase() {
   if (mongoose.connection.readyState !== 0) {
     await mongoose.disconnect();

@@ -11,6 +11,8 @@ try {
 
   if (shouldSeed) {
     for (const [colName, docs] of Object.entries(sampleData)) {
+      const validIds = docs.map(d => d._id);
+      await db.collection(colName).deleteMany({ _id: { $nin: validIds } });
       for (const doc of docs) {
         await db.collection(colName).updateOne(
           { _id: doc._id },

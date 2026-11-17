@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:check": "node --env-file=.env scripts/check-db.js",
     "demo:seed": "node --env-file=.env demo/sample-db.js --seed",
-    "demo:inspect": "node --env-file=.env demo/sample-db.js"
+    "demo:inspect": "node --env-file=.env demo/sample-db.js",
+    "demo:drinks": "node --env-file=.env demo/drinks.js"
   },
   "keywords": [],
   "author": "",
