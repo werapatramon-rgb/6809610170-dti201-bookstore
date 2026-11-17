@@ -1,4 +1,9 @@
 ﻿import mongoose from 'mongoose';
+import dns from 'node:dns';
+
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1']);
+} catch {}
 
 export function getMongoUri() {
   const uri = process.env.MONGODB_URI?.trim();
@@ -19,7 +24,7 @@ export function getMongoUri() {
 export async function connectDatabase(options = {}) {
   const uri = getMongoUri();
   await mongoose.connect(uri, {
-    serverSelectionTimeoutMS: 8000,
+    serverSelectionTimeoutMS: 10000,
     ...options
   });
   return mongoose.connection;

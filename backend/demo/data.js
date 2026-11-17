@@ -9,10 +9,10 @@ export const sampleData = {
     { _id: id('d2'), name: 'Lemon Tea', priceSatang: 3500, available: true }
   ],
   customers: [
-    { _id: id('c1'), name: 'Somchai Demo', email: 'somchai@example.com' }
+    { _id: id('c1'), name: 'Mali Demo', email: 'mali@example.com' }
   ],
   categories: [
-    { _id: id('cat1'), name: 'Computing' }
+    { _id: id('ca1'), name: 'Computing' }
   ],
   authors: [
     { _id: id('a1'), name: 'Nida Demo' },
@@ -23,7 +23,7 @@ export const sampleData = {
       _id: id('b1'),
       sku: 'DEMO-001',
       title: 'Web Basics',
-      categoryId: id('cat1'),
+      categoryId: id('ca1'),
       authorIds: [id('a1'), id('a2')],
       salePriceSatang: 1800
     },
@@ -31,24 +31,25 @@ export const sampleData = {
       _id: id('b2'),
       sku: 'DEMO-002',
       title: 'Database Basics',
-      categoryId: id('cat1'),
+      categoryId: id('ca1'),
       authorIds: [id('a1')],
       salePriceSatang: 2500
     }
   ],
   carts: [
     {
-      _id: id('cart1'),
+      _id: id('cc1'),
       customerId: id('c1'),
       items: [{ bookId: id('b2'), quantity: 1 }]
     }
   ],
   orders: [
     {
-      _id: id('ord1'),
+      _id: id('df1'),
       customerId: id('c1'),
-      status: 'paid',
-      items: [{ bookId: id('b1'), quantity: 2, unitPriceSatang: 1600 }]
+      status: 'confirmed',
+      currency: 'THB',
+      items: [{ bookId: id('b1'), titleAtPurchase: 'Web Basics', quantity: 2, unitPriceSatang: 1600 }]
     }
   ]
 };
