@@ -15,7 +15,7 @@ export default function App() {
   async function loadBooks(nextOffset = offset) {
     try {
       setError('');
-      const body = await request(?limit=&offset=);
+      const body = await request(`?limit=${PAGE_SIZE}&offset=${nextOffset}`);
       setBooks(body.data || []);
     } catch (err) {
       setError(err.message);
@@ -28,14 +28,14 @@ export default function App() {
     event.preventDefault();
     setMessage('');
     setError('');
-    const path = editingId ? / : '';
+    const path = editingId ? `/${editingId}` : '';
     try {
       const body = await request(path, {
         method: editingId ? 'PATCH' : 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
       });
-      setMessage(บันทึกแล้ว:  (id: ));
+      setMessage(`บันทึกแล้ว: ${body.data.title} (id: ${body.data.id})`);
       setForm(EMPTY_FORM);
       setEditingId(null);
       await loadBooks(offset);
@@ -48,7 +48,7 @@ export default function App() {
     setMessage('');
     setError('');
     try {
-      const body = await request(/);
+      const body = await request(`/${id}`);
       const book = body.data;
       setEditingId(book.id);
       setForm({ title: book.title, author: book.author, sourceType: book.sourceType, summary: book.summary });
@@ -64,12 +64,12 @@ export default function App() {
   }
 
   async function removeBook(book) {
-    if (!window.confirm(ยืนยันการลบ ""?)) return;
+    if (!window.confirm(`ยืนยันการลบ "${book.title}"?`)) return;
     setMessage('');
     setError('');
     try {
-      await request(/, { method: 'DELETE' });
-      setMessage(ลบแล้ว:  (id: ));
+      await request(`/${book.id}`, { method: 'DELETE' });
+      setMessage(`ลบแล้ว: ${book.title} (id: ${book.id})`);
       if (editingId === book.id) cancelEdit();
       await loadBooks(offset);
     } catch (err) {

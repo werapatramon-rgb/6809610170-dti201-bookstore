@@ -4,7 +4,7 @@
 
   for (const name of collections) {
     const count = await db.collection(name).countDocuments();
-    console.log(${name}: );
+    console.log(`${name}: ${count}`);
   }
 
   const categories = await db.collection('categories').find().toArray();
@@ -31,6 +31,6 @@
       (sum, item) => sum + item.quantity * item.unitPriceSatang,
       0
     );
-    console.log(Order total:  satang =  THB);
+    console.log(`Order total: ${totalSatang} satang = ${(totalSatang / 100).toFixed(2)} THB`);
   }
 }

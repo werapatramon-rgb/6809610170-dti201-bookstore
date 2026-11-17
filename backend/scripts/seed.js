@@ -1,5 +1,4 @@
-﻿import mongoose from 'mongoose';
-import { connectDatabase, disconnectDatabase, reportDatabaseError } from '../src/db.js';
+﻿import { connectDatabase, disconnectDatabase, reportDatabaseError } from '../src/db.js';
 import { Book } from '../src/models/Book.js';
 import { initialBooks } from '../src/books.js';
 
@@ -17,7 +16,7 @@ try {
   }
 
   const count = await Book.countDocuments();
-  console.log(Seed complete. Books: );
+  console.log(`Seed complete. Books: ${count}`);
 } catch (err) {
   reportDatabaseError(err);
 } finally {

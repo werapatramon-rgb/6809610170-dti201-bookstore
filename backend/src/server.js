@@ -9,7 +9,7 @@ try {
   await Book.init();
   const app = createApp();
   app.listen(port, () => {
-    console.log(API listening on port );
+    console.log(`API listening on port ${port}`);
   });
 } catch (err) {
   reportDatabaseError(err);

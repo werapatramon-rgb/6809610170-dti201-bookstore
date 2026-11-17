@@ -24,23 +24,23 @@ function readCommand(body, { partial = false } = {}) {
 
   for (const key of Object.keys(body)) {
     if (!ALLOWED_FIELDS.has(key)) {
-      errors[key] = [Unexpected field: ];
+      errors[key] = [`Unexpected field: ${key}`];
     }
   }
 
   const requiredFields = ['title', 'author', 'sourceType', 'summary'];
   for (const field of requiredFields) {
     if (body[field] === undefined) {
-      if (!partial) errors[field] = [${field} is required];
+      if (!partial) errors[field] = [`${field} is required`];
       continue;
     }
     if (typeof body[field] !== 'string') {
-      errors[field] = [${field} must be a string];
+      errors[field] = [`${field} must be a string`];
       continue;
     }
     const trimmed = body[field].trim();
     if (!trimmed) {
-      errors[field] = [${field} cannot be empty];
+      errors[field] = [`${field} cannot be empty`];
       continue;
     }
     if (field === 'title' && trimmed.length < 3) {
@@ -118,7 +118,7 @@ export function createApp(store = createBookStore()) {
       if (errors) return problem(res, req, 422, 'Validation failed', { errors });
 
       const book = await store.insert(command);
-      res.status(201).location(/api/books/).json({ data: book });
+      res.status(201).location(`/api/books/${book.id}`).json({ data: book });
     } catch (err) {
       next(err);
     }
@@ -148,18 +148,10 @@ export function createApp(store = createBookStore()) {
   });
 
   app.use((err, req, res, _next) => {
-    if (err?.type === 'entity.parse.failed') {
-      return problem(res, req, 400, 'Malformed JSON body');
-    }
-    if (err?.type === 'entity.too.large') {
-      return problem(res, req, 413, 'Payload too large');
-    }
-    if (err?.code === 11000) {
-      return problem(res, req, 409, 'Duplicate book title');
-    }
-    if (err?.name === 'ValidationError') {
-      return problem(res, req, 422, 'Validation failed');
-    }
+    if (err?.type === 'entity.parse.failed') return problem(res, req, 400, 'Malformed JSON body');
+    if (err?.type === 'entity.too.large') return problem(res, req, 413, 'Payload too large');
+    if (err?.code === 11000) return problem(res, req, 409, 'Duplicate book title');
+    if (err?.name === 'ValidationError') return problem(res, req, 422, 'Validation failed');
     return problem(res, req, 500, 'Internal server error');
   });
 

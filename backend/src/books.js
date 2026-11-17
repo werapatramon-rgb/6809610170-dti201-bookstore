@@ -8,10 +8,10 @@ const generated = Array.from({ length: 197 }, (_, idx) => {
   const num = idx + 4;
   const types = ['book', 'documentation', 'course'];
   return {
-    title: Full-Stack Reference Volume ,
-    author: Instructor Team ,
+    title: `Full-Stack Reference Volume ${String(num).padStart(3, '0')}`,
+    author: `Instructor Team ${(num % 5) + 1}`,
     sourceType: types[num % 3],
-    summary: Curated learning resource # covering web architecture, REST APIs, and MongoDB persistence.
+    summary: `Curated learning resource #${num} covering web architecture, REST APIs, and MongoDB persistence.`
   };
 });
 

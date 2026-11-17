@@ -6,7 +6,7 @@ try {
   await mongoose.connection.db.admin().ping();
   const count = await mongoose.connection.db.collection('books').countDocuments();
   console.log('Database ping: OK');
-  console.log(Books: );
+  console.log(`Books: ${count}`);
 } catch (err) {
   console.error(err.message || 'Database operation failed');
   process.exitCode = 1;
