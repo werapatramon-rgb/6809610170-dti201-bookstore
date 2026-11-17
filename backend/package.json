@@ -8,7 +8,10 @@
     "db:check": "node --env-file=.env scripts/check-db.js",
     "demo:seed": "node --env-file=.env demo/sample-db.js --seed",
     "demo:inspect": "node --env-file=.env demo/sample-db.js",
-    "demo:drinks": "node --env-file=.env demo/drinks.js"
+    "demo:drinks": "node --env-file=.env demo/drinks.js",
+    "seed": "node --env-file=.env scripts/seed.js",
+    "dev": "node --env-file=.env --watch src/server.js",
+    "start": "node --env-file=.env src/server.js"
   },
   "keywords": [],
   "author": "",
