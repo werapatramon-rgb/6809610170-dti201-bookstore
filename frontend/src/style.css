@@ -1,0 +1,21 @@
+﻿* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, sans-serif; background: #f6f7f9; color: #1e293b; line-height: 1.5; }
+.container { max-width: 900px; margin: 0 auto; padding: 24px 16px 48px; }
+h1 { margin: 0 0 8px; font-size: 1.8rem; }
+.subtitle { margin: 0 0 24px; color: #475569; }
+.panel { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 20px; margin-bottom: 24px; }
+.form-grid { display: grid; gap: 12px; }
+label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; font-size: 0.92rem; }
+input, select, textarea { font: inherit; padding: 8px 10px; border: 1px solid #94a3b8; border-radius: 6px; }
+.actions { display: flex; gap: 8px; margin-top: 8px; }
+button { font: inherit; padding: 8px 14px; border-radius: 6px; border: 1px solid #0f172a; background: #0f172a; color: #ffffff; cursor: pointer; }
+button.secondary { background: #ffffff; color: #0f172a; }
+button.danger { border-color: #b91c1c; background: #b91c1c; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+.status { padding: 10px 12px; border-radius: 6px; background: #ecfdf5; border: 1px solid #10b981; color: #065f46; margin-top: 12px; }
+.error { padding: 10px 12px; border-radius: 6px; background: #fef2f2; border: 1px solid #ef4444; color: #991b1b; margin-top: 12px; }
+.book-list { display: grid; gap: 12px; }
+.book-card { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 16px; }
+.book-card h3 { margin: 0 0 4px; }
+.meta { font-size: 0.85rem; color: #475569; margin-bottom: 8px; }
+.pagination { display: flex; justify-content: space-between; align-items: center; margin: 16px 0; }
